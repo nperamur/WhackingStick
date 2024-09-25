@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "whackingstick",
+	"version": "1.0.0",
+	"name": "Whacking Stick",
+	"description": "In the Whacking Stick Mod, we add a whacking stick which gives large amounts of knockback to mobs you whack.",
+	"authors": [
+		"blue_cube78"
+	],
+
+	"license": "MIT",
+	"icon": "assets/whackingstick/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.neelesh.whackingstick.WhackingStick"
+		],
+		"fabric-datagen": [
+			"net.neelesh.whackingstick.WhackingStickDataGenerator"
+		],
+		"client": [
+			"net.neelesh.whackingstick.WhackingStickClient"
+		],
+		"modmenu": [
+			"net.neelesh.whackingstick.ModMenuImplApi"
+		]
+	},
+	"mixins": [
+		"whackingstick.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.11",
+		"minecraft": "~1.21.1",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
