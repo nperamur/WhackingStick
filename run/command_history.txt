@@ -1,5 +1,0 @@
-/gamemode survival
-/give @s minecraft:flint_and_steel
-/time set day
-/summon minecraft:creeper
-/summon minecraft:iron_golem
