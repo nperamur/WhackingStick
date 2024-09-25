@@ -1,0 +1,44 @@
+# Gradle-specific files
+.gradle/
+build/
+out/
+!gradle/wrapper/gradle-wrapper.jar
+.gradlew
+.gradlew.bat
+
+# Minecraft-specific files
+run/
+logs/
+server/
+crash-reports/
+saves/
+mods/
+
+# IDEA-specific files
+.idea/
+*.iml
+
+# Dependency cache (could be large and is regenerated)
+caches/
+libs/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.log
+*.tmp
+*.temp
+
+# JAR and ZIP files
+*.jar
+*.zip
+*.lck
+
+# Fabric build directories
+run/
+
+# User-specific configurations
+.gradle/gradle.properties
+.minecraft/
