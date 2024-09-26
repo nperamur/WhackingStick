@@ -1,28 +1,17 @@
 package net.neelesh.whackingstick;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
-import com.terraformersmc.modmenu.config.option.ConfigOptionStorage;
-import com.terraformersmc.modmenu.gui.ModMenuOptionsScreen;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.impl.client.screen.ButtonList;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.option.GameOptionsScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.option.GameOptions;
-import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
 import net.neelesh.whackingstick.config.WhackingStickConfig;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 
 @Environment(EnvType.CLIENT)
 
