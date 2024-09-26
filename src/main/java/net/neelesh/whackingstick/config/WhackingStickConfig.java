@@ -4,17 +4,12 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.mojang.authlib.minecraft.client.ObjectMapper;
 import net.fabricmc.loader.api.FabricLoader;
-import net.neelesh.whackingstick.WhackingStick;
 
 import java.io.BufferedReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-
-import static com.terraformersmc.modmenu.config.ModMenuConfigManager.save;
 
 public class WhackingStickConfig {
     public static void save(int newHitSound, int enchantGlint) {
