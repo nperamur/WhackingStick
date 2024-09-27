@@ -80,7 +80,6 @@ public class WhackingStickItem extends Item {
 
     @Override
     public void postDamageEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        attacker.getWorld().playSound(attacker, attacker.getBlockPos(), SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, SoundCategory.PLAYERS, 10f, 1f);
         stack.damage(1, attacker, EquipmentSlot.MAINHAND);
         target.takeKnockback(5, -target.getX() + attacker.getX(), -target.getZ() + attacker.getZ());
         whackingStickCriterion.trigger((ServerPlayerEntity)attacker, target, null, 0, 0, false);
@@ -92,7 +91,7 @@ public class WhackingStickItem extends Item {
                 case 3 -> SoundEvents.BLOCK_ANVIL_LAND;
                 default -> throw new IllegalStateException("Unexpected value: " + WhackingStickConfig.loadHitSound());
             };
-            attacker.getWorld().playSound(null, attacker.getX(), attacker.getY(), attacker.getZ(), hitSound, SoundCategory.AMBIENT, 3.0F, 1.0F);
+            attacker.getWorld().playSound(null, attacker.getX(), attacker.getY(), attacker.getZ(), hitSound, SoundCategory.AMBIENT, 5.0F, 1.0F);
         }
     }
 
