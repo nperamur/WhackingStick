@@ -2,9 +2,7 @@ package net.neelesh.whackingstick.custom;
 
 import net.fabricmc.fabric.api.item.v1.EnchantingContext;
 import net.minecraft.block.BlockState;
-import net.minecraft.component.type.AttributeModifierSlot;
-import net.minecraft.component.type.AttributeModifiersComponent;
-import net.minecraft.component.type.ToolComponent;
+import net.minecraft.component.type.*;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EquipmentSlot;
@@ -14,6 +12,7 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ToolMaterials;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -27,25 +26,27 @@ import net.minecraft.world.World;
 import net.neelesh.whackingstick.config.WhackingStickConfig;
 
 import java.util.List;
+
 import static net.neelesh.whackingstick.WhackingStick.whackingStickCriterion;
 
 public class WhackingStickItem extends Item {
+    int level;
     public WhackingStickItem(Settings settings) {
         super(settings);
-    };
+    }
 
     public static AttributeModifiersComponent createAttributeModifiers(float attackDamage, float attackSpeed) {
         return AttributeModifiersComponent.builder()
                 .add(
                         EntityAttributes.GENERIC_ATTACK_DAMAGE,
                         new EntityAttributeModifier(
-                                BASE_ATTACK_DAMAGE_MODIFIER_ID, (double)(attackDamage), EntityAttributeModifier.Operation.ADD_VALUE
+                                BASE_ATTACK_DAMAGE_MODIFIER_ID, attackDamage, EntityAttributeModifier.Operation.ADD_VALUE
                         ),
                         AttributeModifierSlot.MAINHAND
                 )
                 .add(
                         EntityAttributes.GENERIC_ATTACK_SPEED,
-                        new EntityAttributeModifier(BASE_ATTACK_SPEED_MODIFIER_ID, (double)attackSpeed, EntityAttributeModifier.Operation.ADD_VALUE),
+                        new EntityAttributeModifier(BASE_ATTACK_SPEED_MODIFIER_ID, attackSpeed, EntityAttributeModifier.Operation.ADD_VALUE),
                         AttributeModifierSlot.MAINHAND
                 )
                 .build();
@@ -66,8 +67,6 @@ public class WhackingStickItem extends Item {
         return new ToolComponent(List.of(), 1.0F, 2);
     }
 
-
-
     @Override
     public boolean canMine(BlockState state, World world, BlockPos pos, PlayerEntity miner) {
         return !miner.isCreative();
@@ -78,6 +77,7 @@ public class WhackingStickItem extends Item {
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         return true;
     }
+
     @Override
     public void postDamageEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         attacker.getWorld().playSound(attacker, attacker.getBlockPos(), SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, SoundCategory.PLAYERS, 10f, 1f);
@@ -106,15 +106,17 @@ public class WhackingStickItem extends Item {
         return true;
     }
 
-
     @Override
     public int getEnchantability() {
-        return 2;
+        return ToolMaterials.IRON.getEnchantability();
     }
 
     @Override
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-        tooltip.add(Text.literal("+10 Knockback").formatted(Formatting.AQUA));
+        level = stack.getEnchantments().getLevel(context.getRegistryLookup().createRegistryLookup()
+                                                        .getOptional(Enchantments.KNOCKBACK.getRegistryRef())
+                                                        .get().getOrThrow(Enchantments.KNOCKBACK));
+        tooltip.add(Text.literal(("+" + (10 + level) + " Knockback")).formatted(Formatting.AQUA));
         super.appendTooltip(stack, context, tooltip, type);
 
     }
