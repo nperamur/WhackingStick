@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "whackingstick",
-	"version": "${version}",
+	"version": "1.0.0",
 	"name": "Whacking Stick",
 	"description": "In the Whacking Stick Mod, we add a whacking stick which gives large amounts of knockback to mobs you whack.",
 	"authors": [
@@ -30,9 +30,6 @@
 			"net.neelesh.whackingstick.ModMenuImplApi"
 		]
 	},
-	"mixins": [
-		"whackingstick.mixins.json"
-	],
 	"depends": {
 		"fabricloader": ">=0.15.11",
 		"minecraft": "~1.21.1",
