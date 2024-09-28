@@ -27,16 +27,15 @@ public class ModAdvancementsProvider extends FabricAdvancementProvider {
     public void generateAdvancement(RegistryWrapper.WrapperLookup registryLookup, Consumer<AdvancementEntry> consumer) {
         AdvancementEntry rootAdvancement = Advancement.Builder.create()
                 .display(
-                        ModItems.WHACKING_STICK, // The display icon
-                        Text.literal("Whack - A - Mob"), // The title
-                        Text.literal("Whack a mob with the Whacking Stick!"), // The description
-                        Identifier.of("textures/gui/advancements/backgrounds/adventure.png"), // Background image used
-                        AdvancementFrame.TASK, // Options: TASK, CHALLENGE, GOAL
-                        true, // Show toast top right
-                        true, // Announce to chat
-                        false // Hidden in the advancement tab
+                        ModItems.WHACKING_STICK,
+                        Text.literal("Whack - A - Mob"),
+                        Text.literal("Whack a mob with the Whacking Stick!"),
+                        Identifier.of("textures/gui/advancements/backgrounds/adventure.png"),
+                        AdvancementFrame.TASK,
+                        true,
+                        true,
+                        false
                 )
-                // The first string used in criterion is the name referenced by other advancements when they want to have 'requirements'
                 .criterion("whacking", whackingStickCriterion.create(WhackingStickCriterion.Conditions.create().conditions()))
                 .build(consumer, MOD_ID + "/root");
     }
