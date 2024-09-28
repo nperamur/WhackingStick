@@ -9,7 +9,12 @@
 	],
 
 	"license": "MIT",
-	"icon": "assets/whackingstick/icon.png",
+	"icon": "assets/whackingstick/textures/item/whacking_stick.png",
+	"contact": {
+		"homepage": "https://modrinth.com/mod/the-whacking-stick",
+		"sources": "https://github.com/nperamur/WhackingStick",
+		"issues": "https://github.com/nperamur/WhackingStick/issues"
+	},
 	"environment": "*",
 	"entrypoints": {
 		"main": [
