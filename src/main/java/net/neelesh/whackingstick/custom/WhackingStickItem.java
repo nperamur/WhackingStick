@@ -30,7 +30,6 @@ import java.util.List;
 import static net.neelesh.whackingstick.WhackingStick.whackingStickCriterion;
 
 public class WhackingStickItem extends Item {
-    int level;
     public WhackingStickItem(Settings settings) {
         super(settings);
     }
@@ -112,7 +111,7 @@ public class WhackingStickItem extends Item {
 
     @Override
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-        level = stack.getEnchantments().getLevel(context.getRegistryLookup().createRegistryLookup()
+        int level = stack.getEnchantments().getLevel(context.getRegistryLookup().createRegistryLookup()
                                                         .getOptional(Enchantments.KNOCKBACK.getRegistryRef())
                                                         .get().getOrThrow(Enchantments.KNOCKBACK));
         tooltip.add(Text.literal(("+" + (10 + level) + " Knockback")).formatted(Formatting.AQUA));
