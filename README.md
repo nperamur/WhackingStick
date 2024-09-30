@@ -5,7 +5,7 @@ The whacking stick is a fun item that deals large amounts of knockback to mobs y
 
 
 ## Additional Features of the Whacking Stick
-- If you install the Whacking Stick mod with the [Mod Menu](https://modrinth.com/mod/modmenu), you get access to a configuration screen that allows you to customize the hit sound as well as the visiblity of the enchantment glint (By default, the hit sound is set to "Rocket Launch" and the enchantment glint is set to "Default")
+- If you install the Whacking Stick mod with [Mod Menu](https://modrinth.com/mod/modmenu), you get access to a configuration screen that allows you to customize the hit sound as well as the visiblity of the enchantment glint (By default, the hit sound is set to "Rocket Launch" and the enchantment glint is set to "Default")
 - When you whack a mob with the whacking stick, you get an advancement
 - The whacking stick is enchantable with unbreaking, mending, and knockback (to further increase the effect)
 
