@@ -1,5 +1,5 @@
 # The Whacking Stick
-The whacking stick is a fun item that deals large amounts of knockback to mobs you whack. There is nothing more satisfying than sending a mob flying off a cliff, as shown in the image below. It's fast attack speed can be very useful in early-game situations such as being attacked by a creeper, or if you are being attacked by a swarm of mobs since it allows you to keep a good distance from them. The whacking stick also has customizable hit sounds that adds another layer of enjoyability when using it.
+The whacking stick is a fun item that deals large amounts of knockback to mobs you whack. There is nothing more satisfying than sending a mob flying off a cliff, as shown in the image below. It's fast attack speed can be very useful in early-game situations such as being attacked by a creeper, or if you are being attacked by a swarm of mobs since it allows you to keep a good distance from them. The whacking stick also has customizable hit sounds that adds another level of enjoyability when using it.
 
 ![The whacking stick is an item that can deal large amounts of knockback to mobs you whack](https://cdn.modrinth.com/data/uPfDrXxK/images/23f4160ab0ec94536a5d30c44acb51624937f37f.png)
 
