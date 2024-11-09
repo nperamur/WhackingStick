@@ -2,7 +2,9 @@ package net.neelesh.whackingstick.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.fabricmc.fabric.impl.datagen.FabricDataGenHelper;
 import net.minecraft.data.server.recipe.RecipeExporter;
+import net.minecraft.data.server.recipe.RecipeGenerator;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
@@ -18,7 +20,17 @@ public class ModRecipeProvider extends FabricRecipeProvider {
     }
 
     @Override
-    public void generate(RecipeExporter exporter) {
-        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.WHACKING_STICK, 1).pattern("#").pattern("#").input('#', Items.IRON_INGOT).criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT)).offerTo(exporter, Identifier.of(getRecipeName(ModItems.WHACKING_STICK)));
+    protected RecipeGenerator getRecipeGenerator(RegistryWrapper.WrapperLookup registryLookup, RecipeExporter exporter) {
+        return new RecipeGenerator(registryLookup, exporter) {
+            @Override
+            public void generate() {
+                ShapedRecipeJsonBuilder.create(registryLookup.getOrThrow(ModItems.WHACKING_STICK.getRegistryEntry().registryKey().getRegistryRef()), RecipeCategory.COMBAT, ModItems.WHACKING_STICK, 1).pattern("#").pattern("#").input('#', Items.IRON_INGOT).criterion(hasItem(Items.IRON_INGOT), getRecipeGenerator(registryLookup, exporter).conditionsFromItem(Items.IRON_INGOT)).offerTo(exporter, String.valueOf(Identifier.of(getRecipeName(ModItems.WHACKING_STICK))));
+            }
+        };
+    }
+
+    @Override
+    public String getName() {
+        return "";
     }
 }

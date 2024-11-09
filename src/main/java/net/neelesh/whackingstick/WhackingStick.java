@@ -17,8 +17,6 @@ public class WhackingStick implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		ModItems.registerModItems();
-		
-
 	}
 
 

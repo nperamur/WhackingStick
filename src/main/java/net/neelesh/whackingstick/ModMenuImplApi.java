@@ -38,10 +38,10 @@ public class ModMenuImplApi implements ModMenuApi {
         protected void addOptions() {
             hitSoundButton = this.addDrawableChild(ButtonWidget.builder(Text.literal("Hit Sound: " + this.loadHitSound()), (button) -> {
                 updateHitConfig();
-            }).size(240, 20).position(width/2 - 120, 45).build());
+            }).size(240, 20).position(width / 2 - 120, 45).build());
             enchantGlintButton = this.addDrawableChild(ButtonWidget.builder(Text.literal("Enchant Glint: " + this.loadEnchantGlint()), (button) -> {
                 updateGlintConfig();
-            }).size(240, 20).position(width/2 - 120, 90).build());
+            }).size(240, 20).position(width / 2 - 120, 90).build());
         }
 
 
@@ -93,4 +93,5 @@ public class ModMenuImplApi implements ModMenuApi {
             };
         }
     }
+
 }

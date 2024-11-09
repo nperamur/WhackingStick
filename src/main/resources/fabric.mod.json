@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "whackingstick",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"name": "Whacking Stick",
 	"description": "In the Whacking Stick Mod, we add a whacking stick which gives large amounts of knockback to mobs you whack.",
 	"authors": [
@@ -32,7 +32,7 @@
 	},
 	"depends": {
 		"fabricloader": ">=0.15.11",
-		"minecraft": "~1.21.1",
+		"minecraft": "~1.21.2-1.21.3",
 		"java": ">=21",
 		"fabric-api": "*"
 	},
