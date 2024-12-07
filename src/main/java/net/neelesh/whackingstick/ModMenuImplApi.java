@@ -9,7 +9,6 @@ import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.option.GameOptionsScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.option.GameOptions;
 import net.minecraft.text.Text;
 import net.neelesh.whackingstick.config.WhackingStickConfig;
 
@@ -26,9 +25,6 @@ public class ModMenuImplApi implements ModMenuApi {
         Element hitSoundButton;
         Element enchantGlintButton;
         int enchantGlint;
-        public ModMenuOptionsScreen(Screen parent, GameOptions gameOptions, Text title) {
-            super(parent, gameOptions, title);
-        }
 
         public ModMenuOptionsScreen(Screen parent) {
             super(parent, MinecraftClient.getInstance().options, Text.literal("Whacking Stick Config"));
