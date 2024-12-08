@@ -5,7 +5,7 @@ import com.terraformersmc.modmenu.api.ModMenuApi;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.Element;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.option.GameOptionsScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -22,8 +22,8 @@ public class ModMenuImplApi implements ModMenuApi {
 
     public static class ModMenuOptionsScreen extends GameOptionsScreen {
         int hitSoundNum;
-        Element hitSoundButton;
-        Element enchantGlintButton;
+        ButtonWidget hitSoundButton;
+        ButtonWidget enchantGlintButton;
         int enchantGlint;
 
         public ModMenuOptionsScreen(Screen parent) {
@@ -32,12 +32,15 @@ public class ModMenuImplApi implements ModMenuApi {
 
         @Override
         protected void addOptions() {
-            hitSoundButton = this.addDrawableChild(ButtonWidget.builder(Text.literal("Hit Sound: " + this.loadHitSound()), (button) -> {
+            this.hitSoundButton = ButtonWidget.builder(Text.literal("Hit Sound: " + this.loadHitSound()), (button) -> {
                 updateHitConfig();
-            }).size(240, 20).position(width / 2 - 120, 45).build());
-            enchantGlintButton = this.addDrawableChild(ButtonWidget.builder(Text.literal("Enchant Glint: " + this.loadEnchantGlint()), (button) -> {
+            }).size(240, 20).position(width / 2 - 120, 45).build();
+            this.enchantGlintButton = ButtonWidget.builder(Text.literal("Enchant Glint: " + this.loadEnchantGlint()), (button) -> {
                 updateGlintConfig();
-            }).size(240, 20).position(width / 2 - 120, 90).build());
+            }).size(240, 20).position(width / 2 - 120, 90).build();
+            this.addSelectableChild(hitSoundButton);
+            this.addSelectableChild(enchantGlintButton);
+
         }
 
 
@@ -49,9 +52,6 @@ public class ModMenuImplApi implements ModMenuApi {
                 hitSoundNum = 0;
             }
             WhackingStickConfig.save(hitSoundNum, enchantGlint);
-            remove(hitSoundButton);
-            remove(enchantGlintButton);
-            addOptions();
         }
 
         private void updateGlintConfig() {
@@ -62,9 +62,15 @@ public class ModMenuImplApi implements ModMenuApi {
                 enchantGlint = 0;
             }
             WhackingStickConfig.save(hitSoundNum, enchantGlint);
-            remove(enchantGlintButton);
-            remove(hitSoundButton);
-            addOptions();
+        }
+
+        @Override
+        public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+            super.render(context, mouseX, mouseY, delta);
+            hitSoundButton.setMessage(Text.literal("Hit Sound: " + this.loadHitSound()));
+            enchantGlintButton.setMessage(Text.literal("Enchant Glint: " + this.loadEnchantGlint()));
+            hitSoundButton.render(context, mouseX, mouseY, delta);
+            enchantGlintButton.render(context, mouseX, mouseY, delta);
         }
 
         private String loadHitSound() {
