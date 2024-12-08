@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "whackingstick",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"name": "Whacking Stick",
 	"description": "In the Whacking Stick Mod, we add a whacking stick which gives large amounts of knockback to mobs you whack.",
 	"authors": [
