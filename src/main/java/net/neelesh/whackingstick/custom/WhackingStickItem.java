@@ -25,6 +25,7 @@ import net.minecraft.world.World;
 import net.neelesh.whackingstick.config.WhackingStickConfig;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 import static net.neelesh.whackingstick.WhackingStick.whackingStickCriterion;
 
@@ -63,22 +64,20 @@ public class WhackingStickItem extends Item {
         };
     }
     public static ToolComponent createToolComponent() {
-        return new ToolComponent(List.of(), 1.0F, 2);
+        return new ToolComponent(List.of(), 1.0F, 2, false);
     }
 
     @Override
-    public boolean canMine(BlockState state, World world, BlockPos pos, PlayerEntity miner) {
-        return !miner.isCreative();
+    public boolean canMine(ItemStack stack, BlockState state, World world, BlockPos pos, LivingEntity user) {
+        if (user instanceof PlayerEntity) {
+            return !((PlayerEntity) user).isCreative();
+        }
+        return super.canMine(stack, state, world, pos, user);
     }
 
 
     @Override
-    public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        return true;
-    }
-
-    @Override
-    public void postDamageEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+    public void postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         stack.damage(1, attacker, EquipmentSlot.MAINHAND);
         target.takeKnockback(5, -target.getX() + attacker.getX(), -target.getZ() + attacker.getZ());
         whackingStickCriterion.trigger((ServerPlayerEntity)attacker, target, null, 0, 0, false);
@@ -94,21 +93,19 @@ public class WhackingStickItem extends Item {
         }
     }
 
+
     @Override
     public boolean canBeEnchantedWith(ItemStack stack, RegistryEntry<Enchantment> enchantment, EnchantingContext context) {
         return enchantment.matchesKey(Enchantments.KNOCKBACK) || enchantment.matchesKey(Enchantments.UNBREAKING) || enchantment.matchesKey(Enchantments.MENDING);
     }
 
-
     @Override
-    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+    public void appendTooltip(ItemStack stack, TooltipContext context, TooltipDisplayComponent displayComponent, Consumer<Text> textConsumer, TooltipType type) {
         int level = stack.getEnchantments().getLevel(context.getRegistryLookup()
-                                                        .getOptional(Enchantments.KNOCKBACK.getRegistryRef())
-                                                        .get().getOrThrow(Enchantments.KNOCKBACK));
-        tooltip.add(Text.literal(("+" + (10 + level) + " Knockback")).formatted(Formatting.AQUA));
-        super.appendTooltip(stack, context, tooltip, type);
+                .getOptional(Enchantments.KNOCKBACK.getRegistryRef())
+                .get().getOrThrow(Enchantments.KNOCKBACK));
+        textConsumer.accept(Text.literal(("+" + (10 + level) + " Knockback")).formatted(Formatting.AQUA));
+        super.appendTooltip(stack, context, displayComponent, textConsumer, type);
     }
 
-
-    
 }
