@@ -30,7 +30,7 @@ public class ModAdvancementsProvider extends FabricAdvancementProvider {
                         ModItems.WHACKING_STICK,
                         Text.literal("Whack - A - Mob"),
                         Text.literal("Whack a mob with the Whacking Stick!"),
-                        Identifier.of("textures/gui/advancements/backgrounds/adventure.png"),
+                        Identifier.ofVanilla("gui/advancements/backgrounds/adventure"),
                         AdvancementFrame.TASK,
                         true,
                         true,
